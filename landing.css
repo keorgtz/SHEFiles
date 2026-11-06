@@ -1,0 +1,14 @@
+.landing-header, .landing-main { width: min(1040px, calc(100% - 32px)); margin-inline: auto; }
+.landing-header, .landing-brand, .landing-actions { display: flex; align-items: center; gap: 10px; }
+.landing-header { justify-content: space-between; flex-wrap: wrap; min-height: 72px; padding-block: 8px; }
+.landing-brand { font-weight: 750; }
+.landing-main { padding: 0 0 24px; }
+.landing-hero { padding: clamp(22px, 5vw, 48px); border: 1px solid var(--ap-color-primary-pale); border-radius: var(--ap-radius-lg); background: linear-gradient(120deg, var(--ap-color-surface), var(--ap-color-primary-soft)); margin-bottom: 20px; }
+.landing-hero h1 { margin: 10px 0; font-size: clamp(2rem, 5vw, 3.4rem); }
+.landing-hero p, .release-card p { margin: 0; color: var(--ap-color-text-muted); line-height: 1.5; }
+.landing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 235px), 1fr)); gap: 12px; }
+.release-card { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; box-shadow: none; }
+.release-card h2 { font-size: 1.1rem; }
+.release-card .release-status { color: var(--ap-color-primary); font-weight: 650; font-size: .85rem; margin-top: auto; }
+.release-mark { padding: 7px 10px; border-radius: 10px; background: var(--ap-color-primary-soft); color: var(--ap-color-primary); font-size: .8rem; font-weight: 750; }
+.release-card .button { width: 100%; }

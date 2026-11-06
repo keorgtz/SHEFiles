@@ -1,0 +1,27 @@
+{
+  "name": "SHE Books",
+  "short_name": "SHE Books",
+  "description": "Biblioteca digital Keorsoft — Lee PDF, EPUB, CBZ, MOBI y TXT",
+  "start_url": "/ereader.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F5F3FF",
+  "theme_color": "#8B5CF6",
+  "scope": "/",
+  "lang": "es",
+  "categories": ["books", "education"],
+  "icons": [
+    { "src": "ereader-icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "ereader-icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Explorador",
+      "short_name": "Archivos",
+      "description": "Abrir explorador de archivos",
+      "url": "/index.html",
+      "icons": [{ "src": "ereader-icon.svg", "sizes": "any" }]
+    }
+  ]
+}

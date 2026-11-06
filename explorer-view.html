@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6548eb">
+  <meta name="description" content="SHEFiles: explorador de archivos y versiones de aplicaciones.">
+  <title>SHEFiles · Explorador de archivos</title>
+  <link rel="icon" type="image/svg+xml" href="shefiles-icon.svg">
+  <script>try { document.documentElement.dataset.theme = localStorage.getItem('shefiles.theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); } catch {}</script>
+  <link rel="stylesheet" href="aegipulse.css?v=2.0.1">
+  <link rel="stylesheet" href="explorer.css?v=2.0.1">
+  <script type="module" src="/app.js?v=2.2.0"></script>
+</head>
+<body>
+  <svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7V5a1 1 0 0 1 1-1h5l3 3h8a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7Z"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H5v18h14V8l-5-5Zm0 0v6h5M8 13h8M8 17h5"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="m8 7-5 5 5 5m8-10 5 5-5 5m-3-12-2 18"/></symbol>
+    <symbol id="i-package" viewBox="0 0 24 24"><path d="m12 3 9 5v9l-9 5-9-5V8l9-5Zm0 9v10M3 8l9 4 9-4M8 5l9 5v4"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="m10 14 4-4m-6 5-2 2a4 4 0 0 1-6-6l5-5a4 4 0 0 1 6 0m2 3 2-2a4 4 0 0 1 6 6l-5 5a4 4 0 0 1-6 0" transform="translate(2 0)"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 5h12M9 12h12M9 19h12M3 5h1M3 12h1M3 19h1"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1 1m12 12 1 1M5 19l1-1M18 6l1-1"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 15A9 9 0 0 1 9 4a9 9 0 1 0 11 11Z"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3m-4 5v2"/></symbol>
+    <symbol id="i-settings" viewBox="0 0 24 24"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="3"/><circle cx="15" cy="17" r="3"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 8a8 8 0 1 0 0 8m0-13v5h-5"/></symbol>
+    <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 20V4m-6 6 6-6 6 6"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10v1"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7M5 9v12h14V9M9 21v-8h6v8"/></symbol>
+  </svg>
+  <a class="skip-link" href="#main">Ir a los archivos</a>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Navegación del explorador">
+      <a class="brand" href="./"><img src="shefiles-icon.svg" alt="" width="44" height="44"><span><strong data-brand>SHEFiles</strong><small>by SHEndevour</small></span></a>
+      <div class="sidebar-label">ESPACIO DE ARCHIVOS</div>
+      <button id="home" class="nav-home active"><svg class="icon"><use href="#i-home"/></svg>Inicio</button>
+      <button id="browse" class="nav-home"><svg class="icon"><use href="#i-folder"/></svg>Todos los archivos</button>
+      <div class="sidebar-section"><div class="sidebar-label">CARPETAS</div><nav id="sidebarDirs" aria-label="Navegación de carpetas"></nav></div>
+      <div class="sidebar-bottom"><span class="sidebar-footer">SHEndevour <span>·</span> File explorer</span></div>
+    </aside>
+    <div class="workspace">
+      <header class="topbar">
+        <a class="mobile-brand" href="./"><img src="shefiles-icon.svg" alt="SHEFiles" width="36" height="36"></a>
+        <span class="topbar-title" id="topbarTitle">Inicio</span>
+        <nav class="mobile-nav" aria-label="Navegación principal"><button id="mobileHome" class="icon-button" aria-label="Inicio"><svg class="icon"><use href="#i-home"/></svg></button><button id="mobileBrowse" class="icon-button" aria-label="Todos los archivos"><svg class="icon"><use href="#i-folder"/></svg></button></nav>
+        <div class="topbar-actions">
+          <button id="theme" class="icon-button" aria-label="Cambiar a tema oscuro" title="Cambiar tema"><svg class="icon"><use href="#i-moon"/></svg></button>
+          <button id="unlock" class="button quiet"><svg class="icon"><use href="#i-lock"/></svg><span>Ver ocultos</span></button>
+          <button id="settings" class="icon-button" aria-label="Administrar configuración" title="Administrar configuración"><svg class="icon"><use href="#i-settings"/></svg></button>
+          <button id="lock" class="button quiet" hidden><svg class="icon"><use href="#i-lock"/></svg>Cerrar sesión</button>
+        </div>
+      </header>
+      <main id="main" tabindex="-1">
+        <div id="notice" class="notice" role="status" hidden></div>
+        <section id="homeView" aria-label="Inicio">
+        <section class="hero" id="homeBanner">
+          <div><div class="eyebrow"><span></span> TU ESPACIO DE DISTRIBUCIÓN</div><h1>Tus archivos,<br>a un enlace de distancia<span>.</span></h1><p id="subtitle">Versiones listas para compartir.</p></div>
+          <div class="hero-art" aria-hidden="true"><div class="art-orbit"></div><div class="art-folder"><svg><use href="#i-folder"/></svg></div><div class="art-file"><svg class="icon"><use href="#i-code"/></svg><span>JSON</span></div><div class="art-download"><svg class="icon"><use href="#i-down"/></svg></div></div>
+        </section>
+        <div class="section-heading"><div><h2>Accesos recientes</h2><p class="section-help">Carpetas abiertas y descargas en este navegador.</p></div><button id="openExplorer" class="button primary"><svg class="icon"><use href="#i-folder"/></svg>Abrir explorador</button></div>
+        <div class="recent-columns"><section class="recent-panel" aria-labelledby="recentFoldersTitle"><div class="recent-heading"><h3 id="recentFoldersTitle">Carpetas recientes</h3></div><div id="recentFolders"></div></section><section class="recent-panel" aria-labelledby="recentFilesTitle"><div class="recent-heading"><h3 id="recentFilesTitle">Archivos recientes</h3></div><div id="recentFiles"></div></section></div>
+        <section class="quick-section" aria-labelledby="quickTitle"><div class="section-heading"><h2 id="quickTitle">Carpetas disponibles</h2><button id="clearRecents" class="button quiet">Limpiar recientes</button></div><div id="quickFolders" class="quick-folders"></div></section>
+        </section>
+        <section id="explorerView" class="explorer" aria-labelledby="folderTitle" hidden>
+          <div class="section-heading"><div><div class="eyebrow subtle">EXPLORADOR</div><h2 id="folderTitle">Todos los archivos</h2></div><button id="refresh" class="button secondary"><svg class="icon"><use href="#i-refresh"/></svg>Actualizar</button></div>
+          <div class="explorer-panel">
+            <div class="path-line"><nav id="breadcrumbs" aria-label="Ruta de la carpeta"></nav><span id="sessionBadge" class="ap-badge ap-badge--warning" hidden>Administración</span></div>
+            <div class="toolbar">
+              <label class="search"><svg class="icon"><use href="#i-search"/></svg><span class="sr-only">Buscar en esta carpeta</span><input id="search" type="search" placeholder="Buscar en esta carpeta…" autocomplete="off"></label>
+              <label class="sort"><span class="sr-only">Ordenar archivos</span><select id="sort"><option value="folders-az">Carpetas primero</option><option value="name-az">Nombre: A → Z</option><option value="name-za">Nombre: Z → A</option><option value="type">Tipo de archivo</option></select></label>
+              <div class="view-switch" role="group" aria-label="Vista de archivos"><button id="listView" class="icon-button" aria-label="Vista de lista" aria-pressed="true"><svg class="icon"><use href="#i-list"/></svg></button><button id="gridView" class="icon-button" aria-label="Vista de cuadrícula" aria-pressed="false"><svg class="icon"><use href="#i-grid"/></svg></button></div>
+            </div>
+            <div class="results-heading"><span id="itemCount" aria-live="polite">Cargando…</span><div class="filters" role="group" aria-label="Filtrar por tipo"><button data-filter="all" aria-pressed="true">Todos</button><button data-filter="folder" aria-pressed="false">Carpetas</button><button data-filter="file" aria-pressed="false">Archivos</button></div></div>
+            <div id="files" class="file-list" aria-busy="true"></div>
+            <footer class="panel-footer"><span id="status" role="status">Conectando…</span><span id="pathStatus">/downloads/</span></footer>
+          </div>
+        </section>
+        <footer class="page-footer"><span>Hecho para compartir. Listo para descargar.</span><span>SHEFiles <span>2.0</span></span></footer>
+      </main>
+    </div>
+  </div>
+  <dialog id="passwordDialog" aria-labelledby="passwordTitle">
+    <form id="passwordForm"><div class="dialog-heading"><div class="dialog-icon"><svg class="icon"><use href="#i-lock"/></svg></div><button type="button" data-close class="icon-button" aria-label="Cerrar"><svg class="icon"><use href="#i-close"/></svg></button></div><h2 id="passwordTitle">Ver contenido oculto</h2><p id="passwordHelp">Ingresa una clave de acceso o la clave maestra.</p><div class="ap-field"><label for="password">Clave de acceso</label><div class="password-wrap"><input class="ap-input" id="password" type="password" autocomplete="off" required aria-describedby="passwordError"><button id="passwordEye" class="icon-button" type="button" aria-label="Mostrar clave" aria-pressed="false"><svg class="icon"><use href="#i-eye"/></svg></button></div></div><p id="passwordError" class="error" role="alert"></p><div class="dialog-actions"><button type="button" data-close class="button secondary">Cancelar</button><button id="passwordSubmit" type="submit" class="button primary">Continuar</button></div></form>
+  </dialog>
+  <dialog id="propertiesDialog" aria-labelledby="propertiesTitle"><div class="dialog-heading"><div class="dialog-icon"><svg class="icon"><use href="#i-info"/></svg></div><button data-close class="icon-button" aria-label="Cerrar"><svg class="icon"><use href="#i-close"/></svg></button></div><h2 id="propertiesTitle">Detalles del archivo</h2><div id="propertiesContent"></div><div id="propertiesActions" class="dialog-actions"></div></dialog>
+  <dialog id="settingsDialog" class="settings-dialog" aria-labelledby="settingsTitle">
+    <div class="dialog-heading"><h2 id="settingsTitle">Configuración</h2><button data-close class="icon-button" aria-label="Cerrar"><svg class="icon"><use href="#i-close"/></svg></button></div>
+    <div class="settings-body">
+    <p id="saveMode"></p>
+    <label class="ap-field">Archivo JSON<select id="configFile" class="ap-select"><option value="protected-rules.json">Visibilidad · protected-rules.json</option><option value="explorer-config.json">Explorador · explorer-config.json</option></select></label>
+    <div id="rulesTabs" class="settings-tabs" role="group" aria-label="Modo de edición"><button id="prefixMode" class="button" aria-pressed="true">Prefijos y reglas</button><button id="jsonMode" class="button" aria-pressed="false">JSON</button></div>
+    <div id="rulesPanel"><p class="editor-help">Elige qué oculta cada prefijo. Las reglas individuales permiten excepciones. Los enlaces directos siguen disponibles.</p><div id="prefixRules" class="prefix-rules"></div><form id="prefixForm" class="prefix-form"><label class="ap-field" for="newPrefix">Nuevo prefijo<input id="newPrefix" class="ap-input" placeholder="Ej. Internal." required autocomplete="off"></label><label class="ap-field" for="newTarget">Aplicar a<select id="newTarget" class="ap-select"><option value="both">Carpetas y archivos</option><option value="folders">Solo carpetas</option><option value="files">Solo archivos</option></select></label><button id="addPrefix" class="button secondary" type="submit">Agregar prefijo</button></form><details class="individual-rules"><summary id="individualSummary">Reglas individuales</summary><div id="individualRules"></div></details></div>
+    <div id="jsonPanel" hidden><label class="ap-field">Contenido<textarea id="configEditor" class="ap-textarea" spellcheck="false" aria-describedby="editorError"></textarea></label><div class="editor-tools"><button id="formatJson" class="button quiet">Formatear JSON</button><label class="button quiet import-button">Importar JSON<input id="importJson" type="file" accept=".json,application/json" class="sr-only"></label></div></div>
+    </div>
+    <div class="settings-footer">
+    <p id="editorError" class="error" role="alert"></p>
+    <p id="saveResult" class="save-result" role="status"></p>
+    <div class="dialog-actions"><button id="exportJson" class="button secondary"><svg class="icon"><use href="#i-down"/></svg>Exportar JSON</button><button id="saveJson" class="button primary">Guardar en servidor</button></div>
+    </div>
+  </dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <noscript><p class="notice">Activa JavaScript para usar el explorador. <a href="/downloads/">Abrir las descargas directamente</a>.</p></noscript>
+</body>
+</html>

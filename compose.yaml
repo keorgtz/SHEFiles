@@ -1,0 +1,46 @@
+name: shefiles
+services:
+  shefiles:
+    build: .
+    init: true
+    restart: unless-stopped
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      SHEFILES_HOST: 0.0.0.0
+      PORT: "3000"
+      SHEFILES_DOWNLOADS_DIR: /downloads
+      SHEFILES_CONFIG_DIR: /config
+      SHEFILES_PRIVATE_DIR: /private
+      SHEFILES_ENV_FILE: /run/secrets/shefiles.env
+      SHEFILES_PUBLIC_ORIGIN: "${SHEFILES_PUBLIC_ORIGIN:-https://files.endevour.mx}"
+    secrets:
+      - source: shefiles-env
+        target: shefiles.env
+    volumes:
+      - type: bind
+        source: "${SHEFILES_DOWNLOADS_HOST:?Set SHEFILES_DOWNLOADS_HOST in .env}"
+        target: /downloads
+        bind:
+          create_host_path: false
+      - shefiles-config:/config
+      - shefiles-private:/private
+    networks:
+      proxy:
+        aliases:
+          - shefiles-endevour
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/api/capabilities').then(r=>r.json()).then(d=>{if(d.service!=='shefiles')process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+networks:
+  proxy:
+    external: true
+volumes:
+  shefiles-config:
+  shefiles-private:
+secrets:
+  shefiles-env:
+    file: "${SHEFILES_SECRET_FILE:-/etc/shefiles/shefiles.env}"

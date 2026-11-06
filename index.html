@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Descargas oficiales de Endevour PMS, POS y API.">
+  <title>Endevour · Centro de descargas</title>
+  <link rel="icon" href="/shefiles-icon.svg">
+  <link rel="stylesheet" href="/aegipulse.css?v=2.2.0">
+  <link rel="stylesheet" href="/explorer.css?v=2.2.0">
+  <link rel="stylesheet" href="/landing.css?v=2.2.0">
+  <script type="module" src="/landing.js?v=2.2.1"></script>
+</head>
+<body>
+  <header class="landing-header">
+    <a class="landing-brand" href="/"><img src="/shefiles-icon.svg" alt="" width="38" height="38">Endevour</a>
+    <div class="landing-actions">
+      <button id="landingTheme" type="button" class="button quiet">Tema oscuro</button>
+      <button id="openLogin" type="button" class="button secondary">Abrir explorador</button>
+    </div>
+  </header>
+  <main class="landing-main">
+    <section class="landing-hero" aria-labelledby="landingTitle">
+      <div class="eyebrow"><span></span> SOFTWARE ENDEVOUR</div>
+      <h1 id="landingTitle">Centro de descargas<span>.</span></h1>
+      <p>Encuentra las versiones publicadas de Endevour PMS, POS y API.</p>
+    </section>
+    <section aria-label="Instaladores" class="landing-grid">
+      <article class="ap-card release-card" id="pms">
+        <span class="release-mark" aria-hidden="true">PMS</span><h2>Endevour PMS</h2>
+        <p>Recepción, reservas y operación hotelera.</p>
+        <p class="release-status" role="status">Consultando versión…</p>
+        <a class="button primary" download hidden>Descargar PMS</a>
+      </article>
+      <article class="ap-card release-card" id="pos">
+        <span class="release-mark" aria-hidden="true">POS</span><h2>Endevour POS</h2>
+        <p>Punto de venta y centros de consumo.</p>
+        <p class="release-status" role="status">Consultando versión…</p>
+        <a class="button primary" download hidden>Descargar POS</a>
+      </article>
+      <article class="ap-card release-card" id="api">
+        <span class="release-mark" aria-hidden="true">API</span><h2>Endevour API</h2>
+        <p>Servicio de integración de Endevour.</p>
+        <p class="release-status" role="status">Consultando versión…</p>
+        <a class="button primary" download hidden>Descargar API</a>
+      </article>
+    </section>
+    <noscript><p>Activa JavaScript para consultar las versiones publicadas.</p></noscript>
+  </main>
+  <dialog id="loginDialog" aria-labelledby="loginTitle">
+    <form id="loginForm" method="post" action="/api/login">
+      <div class="dialog-heading">
+        <h2 id="loginTitle">Abrir explorador</h2>
+        <button type="button" id="closeLogin" class="icon-button" aria-label="Cerrar">×</button>
+      </div>
+      <label class="ap-field">Clave del explorador
+        <input id="explorerPassword" class="ap-input" name="password" type="password" autocomplete="current-password" maxlength="1024" required aria-describedby="loginError">
+      </label>
+      <p id="loginError" class="error" role="alert"></p>
+      <div class="dialog-actions"><button id="loginSubmit" type="submit" class="button primary">Entrar</button></div>
+    </form>
+  </dialog>
+</body>
+</html>

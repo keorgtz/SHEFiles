@@ -1,0 +1,8 @@
+{
+  "requireKey": true,
+  "key": "@Endevour01",
+  "basePath": "/downloads/",
+  "blockedPrefixes": ["Meridian."],
+  "title": "SHE Books",
+  "subtitle": "Biblioteca digital MeridianSoft"
+}
