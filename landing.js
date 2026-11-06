@@ -5,7 +5,9 @@ if (params.has('open')) explorer.searchParams.set('open', params.get('open'));
 
 function applyTheme(theme) {
   document.documentElement.dataset.theme = theme;
-  $('landingTheme').textContent = theme === 'dark' ? 'Tema claro' : 'Tema oscuro';
+  const label = theme === 'dark' ? 'Cambiar a tema claro' : 'Cambiar a tema oscuro';
+  $('landingTheme').setAttribute('aria-label', label);
+  $('landingTheme').title = label;
 }
 
 let theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
@@ -36,8 +38,10 @@ async function loadRelease(id, manifestPath) {
     const link = card.querySelector('a');
     link.href = target.href;
     link.hidden = false;
+    card.dataset.state = 'ready';
     status.textContent = [manifest.LatestVersion ? 'Versión ' + manifest.LatestVersion : 'Versión publicada', manifest.ReleaseDate].filter(Boolean).join(' · ');
   } catch {
+    card.dataset.state = 'unavailable';
     status.textContent = 'Descarga no disponible en este momento.';
   }
 }
