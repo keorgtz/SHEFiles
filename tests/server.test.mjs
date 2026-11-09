@@ -14,6 +14,8 @@ async function setup(t, options = {}) {
   await writeFile(path.join(downloads, 'pms.zip'), 'test release');
   const manifest = JSON.stringify({ LatestVersion: '6.0.0', DownloadUrl: 'pms.zip' });
   await writeFile(path.join(downloads, 'SHE.Endevour.json'), manifest);
+  await mkdir(path.join(downloads, 'Endevour', 'Installer'), { recursive: true });
+  await writeFile(path.join(downloads, 'Endevour', 'Installer', 'EndevourInstaller.zip'), 'test online installer');
   const server = createServer({ downloads, privateDir: path.join(folder, 'private'), ...options });
   server.listen(0, '127.0.0.1');
   await once(server, 'listening');
@@ -67,6 +69,13 @@ test('manifests and downloads retain their public URLs, bytes, and range support
   const { request, manifest } = await setup(t);
   const config = await (await request('/download-center.json')).json();
   assert.equal(config.pms, '/downloads/SHE.Endevour.json');
+  assert.equal(config.installer, '/downloads/Endevour/Installer/EndevourInstaller.zip');
+  const installer = await request(config.installer);
+  assert.equal(installer.status, 200);
+  assert.equal(await installer.text(), 'test online installer');
+  const page = await (await request('/')).text();
+  assert.match(page, /id="installerDownload"[^>]*href="\/downloads\/Endevour\/Installer\/EndevourInstaller\.zip"/);
+  assert.ok(page.indexOf('id="installerDownload"') < page.indexOf('id="aplicaciones"'));
   assert.equal(await (await request(config.pms)).text(), manifest);
   const direct = await request('/downloads/pms.zip', { headers: { Range: 'bytes=0-3' } });
   assert.equal(direct.status, 206);

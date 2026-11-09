@@ -24,10 +24,11 @@
   isolation: isolate;
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1.13fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 48px);
   align-items: center;
   overflow: hidden;
-  padding: clamp(24px, 4.8vw, 58px);
+  padding: clamp(24px, 4vw, 48px);
   border: 1px solid var(--ap-color-primary-pale);
   border-radius: var(--ap-radius-lg);
   background:
@@ -68,7 +69,7 @@
 }
 .landing-hero h1 {
   margin: 16px 0 14px;
-  font-size: clamp(2.9rem, 6.4vw, 5.15rem);
+  font-size: clamp(2.35rem, 4.6vw, 3.9rem);
   font-weight: 790;
   letter-spacing: -.065em;
   line-height: 1;
@@ -80,8 +81,11 @@
   background: var(--landing-ink);
   background-clip: text;
   color: transparent;
+  font-size: .82em;
+  line-height: 1.2;
 }
 .landing-hero p, .release-card p { margin: 0; color: var(--ap-color-text-muted); line-height: 1.55; }
+.landing-intro > p { max-width: 400px; }
 .landing-jump {
   display: inline-flex;
   min-height: 44px;
@@ -93,10 +97,58 @@
   font-weight: 700;
 }
 .landing-jump:hover { text-decoration: underline; }
-.release-art { display: block; width: 100%; height: auto; transform: scale(1.12); }
+.installer-products { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.installer-products span {
+  padding: 6px 12px;
+  border: 1px solid var(--ap-color-border-strong);
+  border-radius: var(--ap-radius-pill);
+  color: var(--ap-color-text-muted);
+  background: var(--ap-color-surface-glass);
+  font-size: .75rem;
+  font-weight: 700;
+}
+.installer-card {
+  position: relative;
+  padding: clamp(20px, 2.5vw, 30px);
+  border: 1px solid var(--ap-color-primary-pale);
+  border-radius: var(--ap-radius-md);
+  background: linear-gradient(145deg, var(--ap-color-surface), var(--ap-color-primary-soft));
+  box-shadow: var(--ap-shadow-2);
+  min-width: 0;
+}
+.installer-card-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 20px; }
+.installer-icon {
+  display: grid;
+  width: 52px;
+  height: 52px;
+  place-items: center;
+  border-radius: 15px;
+  background: var(--ap-color-primary);
+  color: var(--ap-color-on-primary);
+}
+.installer-icon .icon { width: 26px; height: 26px; }
+.installer-badge { color: var(--ap-color-primary); font-size: .74rem; font-weight: 750; }
+.installer-card h2 { font-size: clamp(1.35rem, 2vw, 1.65rem); letter-spacing: -.04em; line-height: 1.2; margin-bottom: 8px; }
+.installer-card > p { font-size: .85rem; }
+.installer-file { display: flex; align-items: center; gap: 10px; min-width: 0; margin: 20px 0; }
+.installer-format {
+  padding: 10px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--ap-color-border-strong);
+  background: var(--ap-color-surface);
+  color: var(--ap-color-primary);
+  font-size: .65rem;
+  font-weight: 750;
+}
+.installer-file > div { min-width: 0; }
+.installer-file strong { display: block; font-size: .82rem; overflow-wrap: anywhere; }
+.installer-file div > span { display: block; margin-top: 4px; color: var(--ap-color-text-muted); font-size: .73rem; }
+.installer-card .button { width: 100%; min-height: 48px; }
+.installer-card .installer-help { margin-top: 10px; font-size: .72rem; text-align: center; }
 
 .landing-products { margin-top: 24px; }
-.landing-products > h2 { margin: 0 0 12px; font-size: 1.15rem; }
+.landing-products > h2 { margin: 0; font-size: 1.15rem; }
+.manual-description { margin: 4px 0 14px; color: var(--ap-color-text-muted); font-size: .82rem; }
 .landing-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
 .release-card {
   display: flex;
@@ -150,7 +202,7 @@
 .release-card .button .icon { width: 18px; height: 18px; }
 
 @media (max-width: 740px) {
-  .landing-hero { padding: 28px; }
+  .landing-hero { padding: 28px; grid-template-columns: minmax(0, 1fr); }
   .landing-hero h1 { font-size: clamp(2.35rem, 6.7vw, 3.75rem); }
   .landing-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
@@ -163,8 +215,8 @@
   .landing-actions { gap: 5px; }
   .landing-actions .button { padding-inline: 10px; font-size: 12px; }
   #openLogin .icon { display: none; }
-  .landing-hero { grid-template-columns: 1fr; padding: 23px 20px 8px; }
-  .landing-hero h1 { font-size: clamp(2.3rem, 10.5vw, 3.75rem); }
-  .release-art { width: min(100%, 280px); margin: -4px auto 0; transform: none; }
+  .landing-hero { padding: 22px 18px; gap: 22px; }
+  .landing-hero h1 { font-size: clamp(2rem, 9.5vw, 3rem); }
+  .installer-card { padding: 18px; }
   .landing-grid { grid-template-columns: minmax(0, 1fr); gap: 10px; }
 }

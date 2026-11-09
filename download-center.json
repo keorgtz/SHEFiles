@@ -1,4 +1,5 @@
 {
+  "installer": "/downloads/Endevour/Installer/EndevourInstaller.zip",
   "pms": "/downloads/SHE.Endevour.json",
   "pos": "/downloads/SHE.EndevourPOS.json",
   "api": "/downloads/SHE.EndevourAPI.json"

@@ -25,6 +25,27 @@ async function fetchJson(url) {
   return response.json();
 }
 
+function downloadUrl(value, base) {
+  if (typeof value !== 'string' || !value.trim()) throw new Error('Ruta de descarga no válida.');
+  const target = new URL(value, base);
+  if (!['https:', 'http:'].includes(target.protocol) || target.username || target.password) throw new Error('Ruta de descarga no válida.');
+  return target;
+}
+
+function configureInstaller(value) {
+  const link = $('installerDownload');
+  try {
+    const target = downloadUrl(value ?? link.getAttribute('href'), location.origin);
+    const filename = decodeURIComponent(target.pathname.split('/').pop());
+    if (!filename) throw new Error('Seleccione un archivo.');
+    link.href = target.href;
+    $('installerFilename').textContent = filename;
+  } catch {
+    link.hidden = true;
+    $('installerStatus').textContent = 'Descarga no disponible en este momento.';
+  }
+}
+
 async function loadRelease(id, manifestPath) {
   const card = $(id);
   const status = card.querySelector('.release-status');
@@ -32,9 +53,7 @@ async function loadRelease(id, manifestPath) {
     if (typeof manifestPath !== 'string' || !manifestPath.trim()) throw new Error();
     const manifestUrl = new URL(manifestPath, location.origin);
     const manifest = await fetchJson(manifestUrl);
-    if (typeof manifest.DownloadUrl !== 'string' || !manifest.DownloadUrl.trim()) throw new Error();
-    const target = new URL(manifest.DownloadUrl, manifestUrl);
-    if (!['https:', 'http:'].includes(target.protocol) || target.username || target.password) throw new Error();
+    const target = downloadUrl(manifest.DownloadUrl, manifestUrl);
     const link = card.querySelector('a');
     link.href = target.href;
     link.hidden = false;
@@ -48,6 +67,7 @@ async function loadRelease(id, manifestPath) {
 
 async function loadCatalog() {
   const config = await fetchJson('/download-center.json').catch(() => ({}));
+  configureInstaller(config?.installer);
   await Promise.all(['pms', 'pos', 'api'].map(id => loadRelease(id, config?.[id])));
 }
 

@@ -4,7 +4,7 @@ AegiPulse file explorer with light/dark themes, a recent-access home, public rel
 
 ## Public download center and protected explorer
 
-`/` always displays the PMS, POS and API download cards, including when a session is active. Each card fetches the manifest configured in `download-center.json` and uses its current `DownloadUrl`. A relative download URL is resolved against its manifest URL. The explorer is opened from **Abrir explorador** and the password is checked by the existing Node server. Serve the whole site through Node so the explorer view, directory indexes and explorer settings are protected on the server.
+`/` highlights the Online Unified Installer above the PMS, POS and API manual download cards, including when a session is active. Set its direct package URL in the `installer` field of `download-center.json`. The manual cards fetch their configured manifests and use the current `DownloadUrl`. A relative download URL is resolved against its manifest URL. The explorer is opened from **Abrir explorador** and the password is checked by the existing Node server. Serve the whole site through Node so the explorer view, directory indexes and explorer settings are protected on the server.
 
 Existing public links continue to work:
 

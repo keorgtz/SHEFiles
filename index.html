@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Descargas oficiales de Endevour PMS, POS y API.">
+  <meta name="description" content="Descarga el Instalador Unificado Online de Endevour o los paquetes de instalación manual de PMS, POS y API.">
   <title>Endevour · Centro de descargas</title>
   <link rel="icon" href="/shefiles-icon.svg">
   <link rel="stylesheet" href="/aegipulse.css?v=2.2.0">
   <link rel="stylesheet" href="/explorer.css?v=2.2.0">
-  <link rel="stylesheet" href="/landing.css?v=2.3.0">
-  <script type="module" src="/landing.js?v=2.3.0"></script>
+  <link rel="stylesheet" href="/landing.css?v=2.4.0">
+  <script type="module" src="/landing.js?v=2.4.0"></script>
 </head>
 <body class="download-landing">
   <a class="skip-link" href="#aplicaciones">Ir a las descargas</a>
@@ -35,41 +35,33 @@
     <section class="landing-hero" aria-labelledby="landingTitle">
       <div class="landing-intro">
         <div class="landing-eyebrow"><span aria-hidden="true"></span> Centro de descargas</div>
-        <h1 id="landingTitle">Instaladores <span>Endevour.</span></h1>
-        <p>Versiones oficiales de PMS, POS y API.</p>
-        <a class="landing-jump" href="#aplicaciones">Ver aplicaciones <span aria-hidden="true">↘</span></a>
+        <h1 id="landingTitle">Todo Endevour.<span>Un solo instalador.</span></h1>
+        <p>Instala y configura PMS, POS y API con una experiencia guiada, paso a paso.</p>
+        <div class="installer-products" aria-label="Aplicaciones de Endevour">
+          <span>PMS</span><span>POS</span><span>API</span>
+        </div>
+        <a class="landing-jump" href="#aplicaciones">¿Buscas una versión para instalar manualmente? <span aria-hidden="true">↘</span></a>
       </div>
-      <svg class="release-art" viewBox="0 0 520 322" aria-hidden="true" focusable="false">
-        <defs>
-          <linearGradient id="release-surface" x2="1" y2="1"><stop stop-color="#b2a3ff" stop-opacity=".66"/><stop offset=".58" stop-color="#7661eb" stop-opacity=".44"/><stop offset="1" stop-color="#5bb8e9" stop-opacity=".24"/></linearGradient>
-          <linearGradient id="release-edge"><stop stop-color="#a58aff"/><stop offset="1" stop-color="#77d9ef"/></linearGradient>
-          <linearGradient id="release-depth"><stop stop-color="#6652c9" stop-opacity=".65"/><stop offset="1" stop-color="#494799" stop-opacity=".3"/></linearGradient>
-          <radialGradient id="release-glow"><stop stop-color="#8570ff" stop-opacity=".42"/><stop offset="1" stop-color="#8570ff" stop-opacity="0"/></radialGradient>
-        </defs>
-        <ellipse cx="264" cy="188" rx="250" ry="131" fill="url(#release-glow)"/>
-        <g fill="none" stroke="url(#release-edge)" opacity=".34">
-          <ellipse cx="260" cy="184" rx="241" ry="102" stroke-dasharray="3 7"/>
-          <ellipse cx="260" cy="184" rx="210" ry="85"/>
-          <path d="M39 222h49l44-20m304-65h46m-349-58h-25L83 94m311 154 33 16h31"/>
-        </g>
-        <g stroke="url(#release-edge)" stroke-linejoin="round">
-          <path d="M101 216v13l159 73 159-73v-13l-159 73z" fill="url(#release-depth)" stroke-opacity=".45"/>
-          <path d="m260 142 159 74-159 73-159-73z" fill="url(#release-surface)" stroke-opacity=".48"/>
-          <path d="M101 170v14l159 73 159-73v-14l-159 74z" fill="url(#release-depth)" stroke-opacity=".62"/>
-          <path d="m260 96 159 74-159 74-159-74z" fill="url(#release-surface)" stroke-opacity=".65"/>
-          <path d="M101 123v14l159 74 159-74v-14l-159 74z" fill="url(#release-depth)" stroke-opacity=".82"/>
-          <path d="m260 49 159 74-159 74-159-74z" fill="url(#release-surface)"/>
-          <path d="m260 63 129 60-129 60-129-60z" fill="none" stroke-opacity=".55"/>
-          <path d="m163 123 97-45 96 45-96 45z" fill="#8170f8" fill-opacity=".25" stroke-opacity=".35"/>
-        </g>
-        <path d="m260 81 43 20v27l-43 20-43-20v-27z" fill="url(#release-depth)" stroke="url(#release-edge)" stroke-width="1.5"/>
-        <path d="M260 97v25m-9-8 9 8 9-8m-21 16h24" fill="none" stroke="#f5f2ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-        <g fill="#9e8cff"><circle cx="39" cy="222" r="3"/><circle cx="83" cy="94" r="3"/><circle cx="458" cy="264" r="3"/><circle cx="134" cy="158" r="2"/></g>
-        <g fill="#78d7ed"><circle cx="482" cy="137" r="3"/><circle cx="374" cy="122" r="2"/><circle cx="260" cy="289" r="3"/></g>
-      </svg>
+      <article class="installer-card" aria-labelledby="installerTitle">
+        <div class="installer-card-top">
+          <span class="installer-icon"><svg class="icon" aria-hidden="true"><use href="#download-arrow"/></svg></span>
+          <span class="installer-badge">Descarga principal</span>
+        </div>
+        <h2 id="installerTitle">Instalador Unificado Online</h2>
+        <p>Tu punto de partida para instalar Endevour.</p>
+        <div class="installer-file">
+          <span class="installer-format" aria-hidden="true">ZIP</span>
+          <div><strong id="installerFilename">EndevourInstaller.zip</strong><span>Paquete del instalador online</span></div>
+        </div>
+        <a id="installerDownload" class="button primary" href="/downloads/Endevour/Installer/EndevourInstaller.zip" download>
+          <svg class="icon" aria-hidden="true"><use href="#download-arrow"/></svg>Descargar instalador
+        </a>
+        <p id="installerStatus" class="installer-help" role="status">Descarga el paquete para comenzar.</p>
+      </article>
     </section>
     <section id="aplicaciones" aria-labelledby="applicationsTitle" class="landing-products" tabindex="-1">
-      <h2 id="applicationsTitle">Aplicaciones</h2>
+      <h2 id="applicationsTitle">Instalación manual</h2>
+      <p class="manual-description">Paquetes de las versiones recientes, por aplicación.</p>
       <div class="landing-grid">
         <article class="ap-card release-card" id="pms">
           <div class="release-card-top">
@@ -79,7 +71,7 @@
           <h3>Endevour PMS</h3>
           <p>Recepción, reservas y operación hotelera.</p>
           <p class="release-status" role="status">Consultando versión…</p>
-          <a class="button primary" download hidden><svg class="icon" aria-hidden="true"><use href="#download-arrow"/></svg>Descargar PMS</a>
+          <a class="button secondary" download hidden><svg class="icon" aria-hidden="true"><use href="#download-arrow"/></svg>Descargar PMS</a>
         </article>
         <article class="ap-card release-card" id="pos">
           <div class="release-card-top">
@@ -89,7 +81,7 @@
           <h3>Endevour POS</h3>
           <p>Ventas y operación de centros de consumo.</p>
           <p class="release-status" role="status">Consultando versión…</p>
-          <a class="button primary" download hidden><svg class="icon" aria-hidden="true"><use href="#download-arrow"/></svg>Descargar POS</a>
+          <a class="button secondary" download hidden><svg class="icon" aria-hidden="true"><use href="#download-arrow"/></svg>Descargar POS</a>
         </article>
         <article class="ap-card release-card" id="api">
           <div class="release-card-top">
@@ -99,7 +91,7 @@
           <h3>Endevour API</h3>
           <p>Conexión de Endevour con otros sistemas.</p>
           <p class="release-status" role="status">Consultando versión…</p>
-          <a class="button primary" download hidden><svg class="icon" aria-hidden="true"><use href="#download-arrow"/></svg>Descargar API</a>
+          <a class="button secondary" download hidden><svg class="icon" aria-hidden="true"><use href="#download-arrow"/></svg>Descargar API</a>
         </article>
       </div>
     </section>
